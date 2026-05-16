@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Von 260W auf 203W — und zurück. Mein Weg aus dem Leistungsloch – AfterFuel Blog</title>
+  <meta name="description" content="260W FTP, dann vier Monate Stress, schlechter Schlaf, hohes Cortisol. Wie schnell Fitness abbaut — und wie ich jetzt den Weg zurück angehe." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://afterfuel.de/blog/paincave-ftp-aufbau.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://afterfuel.de/blog/paincave-ftp-aufbau.html" />
+  <meta property="og:title" content="Von 260W auf 203W — und zurück." />
+  <meta property="og:description" content="260W FTP, dann vier Monate Stress, schlechter Schlaf, hohes Cortisol. Wie schnell Fitness abbaut — und wie ich jetzt den Weg zurück angehe." />
+  <meta property="og:image" content="https://afterfuel.de/og-image.png" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="article:author" content="Sebastian" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Von 260W auf 203W — und zurück.",
+    "description": "260W FTP, dann vier Monate Stress, schlechter Schlaf, hohes Cortisol. Wie schnell Fitness abbaut — und wie ich jetzt den Weg zurück angehe.",
+    "url": "https://afterfuel.de/blog/paincave-ftp-aufbau.html",
+    "author": { "@type": "Person", "name": "Sebastian" },
+    "publisher": { "@type": "Organization", "name": "AfterFuel", "url": "https://afterfuel.de" },
+    "inLanguage": "de"
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23c84b2f'/><text x='16' y='22' font-family='serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'>AF</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f4f2ee; --surface: #ffffff; --surface2: #f9f8f6;
+      --border: #e4e1db; --border2: #ccc9c1;
+      --text: #1c1a17; --muted: #7a7570; --hint: #b0ada6;
+      --green: #3d7a52; --green-bg: #edf5f0; --green-border: #b8d9c4;
+      --amber: #a06020; --amber-bg: #fdf4e7;
+      --accent: #c84b2f; --accent-light: #fdf0ed;
+      --radius-md: 16px; --radius-lg: 22px;
+    }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    .page { max-width: 680px; margin: 0 auto; padding: 40px clamp(16px, 4vw, 24px) 100px; }
+
+    .site-header { margin-bottom: 48px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 1.8rem; letter-spacing: -0.03em; text-decoration: none; color: var(--text); }
+    .logo span { color: var(--accent); }
+    .back-link { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: color .15s; }
+    .back-link:hover { color: var(--text); }
+
+    .article-header { margin-bottom: 36px; }
+    .article-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+    .article-date { font-size: 12px; color: var(--hint); }
+    .article-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; background: var(--accent-light); color: var(--accent); }
+    .article-tag.green { background: var(--green-bg); color: var(--green); }
+    .article-tag.amber { background: var(--amber-bg); color: var(--amber); }
+    .article-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.7rem, 5vw, 2.4rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .article-intro { font-size: 16px; color: var(--muted); line-height: 1.7; border-left: 3px solid var(--accent); padding-left: 16px; }
+
+    .ftp-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px; margin: 24px 0; }
+    .ftp-badge { display: inline-flex; flex-direction: column; align-items: center; border-radius: var(--radius-md); padding: 16px 24px; margin: 4px; }
+    .ftp-badge.was { background: var(--green); color: white; }
+    .ftp-badge.now { background: var(--amber-bg); border: 1px solid var(--amber); color: var(--amber); }
+    .ftp-badge.target { background: var(--accent); color: white; }
+    .ftp-badge-label { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; opacity: .8; margin-bottom: 4px; }
+    .ftp-badge-value { font-family: 'DM Serif Display', serif; font-size: 2rem; line-height: 1; }
+    .ftp-badge-sub { font-size: 11px; opacity: .75; margin-top: 3px; }
+    .ftp-arrow { font-size: 1.4rem; color: var(--hint); padding-bottom: 14px; }
+
+    .article-body { max-width: 640px; }
+    .article-body h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin: 36px 0 12px; line-height: 1.2; }
+    .article-body p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+    .article-body p:last-child { margin-bottom: 0; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+
+    .panel { border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 14px 18px; margin: 20px 0; font-size: 14px; line-height: 1.7; }
+    .panel.green { background: var(--green-bg); border-left: 3px solid var(--green); color: #1f4a30; }
+    .panel.amber { background: var(--amber-bg); border-left: 3px solid var(--amber); color: #6b3e10; }
+    .panel strong { font-weight: 600; }
+
+    .timeline { margin: 24px 0; display: flex; flex-direction: column; }
+    .timeline-item { display: flex; gap: 16px; padding-bottom: 20px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot-wrap { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .timeline-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border2); flex-shrink: 0; margin-top: 5px; }
+    .timeline-dot.green { background: var(--green); }
+    .timeline-dot.amber { background: var(--amber); }
+    .timeline-dot.accent { background: var(--accent); }
+    .timeline-line { flex: 1; width: 1px; background: var(--border); margin-top: 4px; }
+    .timeline-item:last-child .timeline-line { display: none; }
+    .timeline-year { font-size: 11px; font-weight: 600; color: var(--hint); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 3px; }
+    .timeline-text { font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .timeline-text strong { color: var(--text); }
+
+    .update-box { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: var(--radius-md); padding: 18px 20px; margin: 24px 0; }
+    .update-label { font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+    .update-text { font-size: 14px; color: #1f4a30; line-height: 1.65; }
+
+    .tool-cta { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 22px; margin: 28px 0; display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; transition: all .18s; }
+    .tool-cta:hover { border-color: var(--border2); box-shadow: 0 4px 16px rgba(28,26,23,.06); transform: translateY(-1px); }
+    .tool-cta-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .tool-cta-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .tool-cta-sub { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .tool-cta-arrow { margin-left: auto; font-size: 18px; color: var(--hint); flex-shrink: 0; }
+
+    .divider { height: 1px; background: var(--border); margin: 32px 0; }
+
+    footer { text-align: center; font-size: 12px; color: var(--hint); margin-top: 56px; line-height: 1.7; padding-top: 24px; border-top: 1px solid var(--border); }
+    footer a { color: var(--hint); text-decoration: none; margin: 0 8px; }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="site-header">
+    <a href="../" class="logo">After<span>Fuel</span></a>
+    <a href="index.html" class="back-link">← Blog</a>
+  </header>
+
+  <article>
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="article-date">13. Mai 2026</span>
+        <span class="article-tag">Paincave</span>
+        <span class="article-tag green">FTP</span>
+        <span class="article-tag amber">Cortisol</span>
+      </div>
+      <h1 class="article-title">Von 260W auf 203W —<br>und zurück.</h1>
+      <p class="article-intro">
+        Ich hatte 260W FTP. Dann kam ein Riesenprojekt, vier Monate kaum Schlaf, schlechte Ernährung, Cortisol durch die Decke. Heute stehe ich bei 203W und fange wieder an. Das hier ist kein Motivationspost — sondern ein ehrlicher Bericht.
+      </p>
+    </header>
+
+    <div class="article-body">
+
+      <div class="ftp-row">
+        <div class="ftp-badge was">
+          <div class="ftp-badge-label">Letztes Jahr</div>
+          <div class="ftp-badge-value">260 W</div>
+          <div class="ftp-badge-sub">hart erarbeitet</div>
+        </div>
+        <div class="ftp-arrow">→</div>
+        <div class="ftp-badge now">
+          <div class="ftp-badge-label">Heute</div>
+          <div class="ftp-badge-value">203 W</div>
+          <div class="ftp-badge-sub">vier Monate später</div>
+        </div>
+        <div class="ftp-arrow">→</div>
+        <div class="ftp-badge target">
+          <div class="ftp-badge-label">Ziel in 28 Tagen</div>
+          <div class="ftp-badge-value">233 W</div>
+          <div class="ftp-badge-sub">TrainerRoad Prognose</div>
+        </div>
+      </div>
+
+      <h2>Wie schnell es geht</h2>
+      <p>
+        Ich bin 47. Hinter mir liegen eine Knie-OP nach der Corona-Zeit, eine Schulter-OP, ein Nabelbruch — und zwischendrin immer wieder Unterbrechungen durch Familie und Beruf. Ich kenne Rückschläge. Aber dieser hier war anders, weil er nicht vom Körper kam, sondern vom Kopf.
+      </p>
+      <p>
+        Letztes Jahr hatte ich 260W FTP. Das ist kein Profi-Wert, aber für jemanden der abends nach der Arbeit in den Keller geht wenn die Kinder schlafen — ein ehrlicher Wert, strukturiert erarbeitet. Dann kam das Projekt.
+      </p>
+
+      <div class="panel amber">
+        <strong>Was vier Monate Stress mit dem Körper machen:</strong> Chronisch erhöhtes Cortisol baut Muskulatur ab, stört den Tiefschlaf, verschlechtert die Glukoseverwertung und bremst die Trainingsadaptation. Kein Einzelfaktor — ein System das kippt.
+      </div>
+
+      <h2>Das Projekt</h2>
+      <p>
+        Ein Riesenprojekt — beruflich. Die Art bei der man abends nicht abschalten kann, nachts schlechter schläft und morgens schon wieder mit dem Laptop anfängt. Vier Monate. Das Training blieb zuerst unregelmäßig, dann ganz aus.
+      </p>
+      <p>
+        Dazu schlechte Ernährung — nicht dramatisch, aber auch nicht mehr strukturiert. Mehr Kaffee als nötig, weniger Protein als sinnvoll, keine Routine. Der Körper hat das quittiert.
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot-wrap">
+            <div class="timeline-dot green"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-year">Letztes Jahr</div>
+            <div class="timeline-text"><strong>260W FTP.</strong> Strukturiertes Training, gute Routine, Paincave läuft regelmäßig.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot-wrap">
+            <div class="timeline-dot amber"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-year">Vier Monate</div>
+            <div class="timeline-text"><strong>Beruflicher Ausnahmezustand.</strong> Großes Projekt, wenig Schlaf, kaum Training, Ernährung hinten angestellt. Cortisol hoch, Energie niedrig.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot-wrap">
+            <div class="timeline-dot amber"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-year">Ergebnis</div>
+            <div class="timeline-text"><strong>203W.</strong> 57 Watt weniger. Fast 22% Verlust in vier Monaten. Schneller als ich dachte.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot-wrap">
+            <div class="timeline-dot accent"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-year">Jetzt</div>
+            <div class="timeline-text"><strong>Neustart.</strong> TrainerRoad KI-Erkennung. Entspannter Blick auf die Dinge. Weg zurück nach oben.</div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Warum Wiederaufbau schwerer ist als Aufbau</h2>
+      <p>
+        Wer noch nie bei 260W war, dem fehlt der Vergleich. Ich weiß wie es sich anfühlt — und 203W fühlen sich entsprechend schwer an. Nicht körperlich, sondern mental. Man kennt das Ziel, man weiß wie weit man davon entfernt ist.
+      </p>
+      <p>
+        Gleichzeitig: Muskelgedächtnis ist real. Der Körper war schon dort. Das macht den Weg zurück realistischer als den ersten Aufbau — wenn man es ruhig angeht und nicht versucht die vier Monate in vier Wochen aufzuholen.
+      </p>
+
+      <div class="panel green">
+        <strong>Was ich diesmal anders mache:</strong> Keine Gewalt. Kein "ich muss das aufholen". TrainerRoad entscheidet was heute dran ist — ich fahre es. Und die Ernährung danach plane ich strukturiert, nicht aus dem Bauch.
+      </div>
+
+      <h2>Die KI-Erkennung</h2>
+      <p>
+        TrainerRoad hat eine KI-basierte Leistungserkennung die aus den letzten Einheiten den aktuellen FTP schätzt — ohne einen exhausting Maximaltest. Kein 20-Minuten-Vollgas, kein Ramp Test bis zum Umfallen. Der Algorithmus liest die Trainingsdaten und gibt einen Wert aus.
+      </p>
+      <p>
+        Morgen ist es soweit. Ich bin gespannt was die KI sagt — und ob 203W der Boden war oder ob da noch etwas wartet.
+      </p>
+
+      <!-- UPDATE NACH KI-ERKENNUNG HIER EINTRAGEN -->
+      <div class="update-box">
+        <div class="update-label">Update — KI-Erkennung Ergebnis</div>
+        <div class="update-text">
+          Die KI hat <strong>216W</strong> erkannt — 13 Watt mehr als mein bisheriger Wert. Kein Test, kein Vollgas, einfach aus den letzten Einheiten abgeleitet. Der Algorithmus sieht also schon was ich noch nicht ganz gespürt habe: der Körper kommt zurück.<br /><br />
+          Und die Prognose für die nächsten 28 Tage: <strong>233W.</strong> Das wären noch 27 Watt bis zu meinem alten Niveau. Realistisch? Ambitioniert. Aber das Muskelgedächtnis ist anscheinend noch da — ich muss ihm nur Zeit geben.
+        </div>
+      </div>
+
+      <h2>Mittlerweile sehe ich die Dinge entspannter</h2>
+      <p>
+        Das ist vielleicht das Wichtigste was ich in den letzten Monaten gelernt habe. Nicht die Wattzahlen — sondern dass Training keine Pflicht ist die man sich selbst auferlegt, sondern die einzige Zeit am Tag die komplett mir gehört. Keine Kinder, keine Arbeit, kein Telefon.
+      </p>
+      <p>
+        47 Jahre, Familie, Beruf, drei Ops im Rückspiegel. Wenn ich abends in den Keller gehe und 45 Minuten fahre während alle schlafen — das ist kein Versagen weil es keine drei Stunden sind. Das ist Konsequenz. Und das reicht.
+      </p>
+
+      <div class="divider"></div>
+
+      <a href="../" class="tool-cta">
+        <div class="tool-cta-icon">🚴</div>
+        <div>
+          <div class="tool-cta-title">AfterFuel Cycling Tool</div>
+          <div class="tool-cta-sub">FTP, VO₂max, W/kg und Energieverbrauch aus deinen Leistungsdaten schätzen. Kein Account, kein Tracking.</div>
+        </div>
+        <div class="tool-cta-arrow">→</div>
+      </a>
+
+      <p style="margin-top:24px;">
+        Ich werde berichten. Nächster Artikel: Was die KI erkannt hat — und wie die ersten Wochen strukturiertes Training nach der Pause sich wirklich anfühlen.
+      </p>
+
+    </div>
+  </article>
+
+  <footer>
+    AfterFuel · <a href="../">App</a> · <a href="index.html">Blog</a> · <a href="../methodik.html">Methodik</a> · <a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutz</a>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Methodik – AfterFuel</title>
+  <meta name="description" content="Wie berechnet AfterFuel? Die wissenschaftlichen Grundlagen und Formeln — transparent erklärt." />
+<meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://afterfuel.de/methodik.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f5f3ef; --surface: #ffffff; --surface2: #f9f8f6;
+      --border: #e2dfd9; --border2: #ccc9c1;
+      --text: #1c1a17; --muted: #7a7570; --hint: #b0ada6;
+      --green: #3d7a52; --green-bg: #edf5f0; --green-border: #b8d9c4;
+      --blue: #2e5fa3; --blue-bg: #eef3fb; --blue-border: #b6ccec;
+      --accent: #c84b2f; --accent-light: #fdf0ed;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    .page { max-width: 680px; margin: 0 auto; padding: 40px 20px 80px; }
+
+    .site-header { margin-bottom: 40px; }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 2rem; letter-spacing: -0.03em; text-decoration: none; color: var(--text); }
+    .logo span { color: var(--accent); }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: clamp(24px,5vw,40px); margin-bottom: 16px; }
+
+    h1 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 8px; }
+    .subtitle { font-size: 14px; color: var(--muted); margin-bottom: 0; line-height: 1.5; }
+
+    h2 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; margin-bottom: 8px; color: var(--text); }
+    h3 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--hint); margin-bottom: 10px; margin-top: 20px; }
+    h3:first-of-type { margin-top: 0; }
+
+    p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+    strong { color: var(--text); font-weight: 600; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .formula-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .formula-box code {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .panel-green {
+      background: var(--green-bg);
+      border-left: 3px solid var(--green);
+      border-radius: 0 12px 12px 0;
+      padding: 14px 16px;
+      font-size: 14px;
+      color: #1f4a30;
+      line-height: 1.65;
+      margin: 12px 0;
+    }
+
+    .panel-blue {
+      background: var(--blue-bg);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 12px 12px 0;
+      padding: 14px 16px;
+      font-size: 14px;
+      color: #1c3a6b;
+      line-height: 1.65;
+      margin: 12px 0;
+    }
+
+    .panel-amber {
+      background: #fdf4e7;
+      border-left: 3px solid #a06020;
+      border-radius: 0 12px 12px 0;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #6b3e10;
+      line-height: 1.65;
+      margin: 12px 0;
+    }
+
+    .sport-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+    .sport-table th { text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--hint); padding: 6px 10px; border-bottom: 1px solid var(--border); }
+    .sport-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+    .sport-table tr:last-child td { border-bottom: none; }
+    .sport-table td:first-child { color: var(--text); font-weight: 500; }
+
+    .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+    footer { text-align: center; font-size: 12px; color: var(--hint); margin-top: 40px; line-height: 1.8; }
+    footer a { color: var(--hint); text-decoration: none; margin: 0 8px; }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="site-header">
+    <a href="./" class="logo">After<span>Fuel</span></a>
+  </header>
+
+  <!-- Intro -->
+  <div class="card">
+    <h1>Wie berechnet AfterFuel?</h1>
+    <p class="subtitle">Alle Formeln und wissenschaftlichen Grundlagen — transparent und verständlich erklärt. AfterFuel versteckt nichts.</p>
+  </div>
+
+  <!-- Grundumsatz -->
+  <div class="card">
+    <h2>1. Grundumsatz</h2>
+    <p>AfterFuel berechnet deinen Grundumsatz (BMR — Basal Metabolic Rate) mit der <strong>Mifflin-St-Jeor Formel</strong>. Diese gilt aktuell als die genaueste Formel zur BMR-Schätzung ohne Labormessung und wurde in großen Populationsstudien validiert.</p>
+
+    <h3>Formel</h3>
+    <div class="formula-box">
+      <strong>Männlich:</strong><br />
+      <code>BMR = 10 × Gewicht(kg) + 6.25 × Größe(cm) − 5 × Alter + 5</code><br /><br />
+      <strong>Weiblich:</strong><br />
+      <code>BMR = 10 × Gewicht(kg) + 6.25 × Größe(cm) − 5 × Alter − 161</code><br /><br />
+      <strong>Divers / keine Angabe:</strong><br />
+      <code>BMR = Mittelwert aus beiden Werten</code>
+    </div>
+
+    <div class="panel-blue">
+      Der BMR wird anschließend mit einem <strong>Aktivitätsfaktor</strong> multipliziert: sitzend (×1,25), normal aktiv (×1,45), viel Bewegung (×1,65). Das ergibt den täglichen Kalorienbedarf ohne Training.
+    </div>
+  </div>
+
+  <!-- Trainingsverbrauch -->
+  <div class="card">
+    <h2>2. Trainingsverbrauch</h2>
+    <p>Der Kalorienverbrauch beim Training wird mit <strong>MET-Werten</strong> (Metabolic Equivalent of Task) berechnet. MET ist eine international anerkannte Maßeinheit aus der Sportwissenschaft — sie beschreibt den Energieverbrauch einer Aktivität relativ zum Ruheumsatz.</p>
+
+    <h3>Formel</h3>
+    <div class="formula-box">
+      <code>Verbrauch = MET × Gewicht(kg) × Dauer(h) × Intensitätsfaktor</code>
+    </div>
+
+    <h3>MET-Werte und Intensitätsfaktoren</h3>
+    <table class="sport-table">
+      <tr><th>Sportart</th><th>MET</th><th>Energiesystem</th></tr>
+      <tr><td>Radfahren</td><td>6,5</td><td>Ausdauer</td></tr>
+      <tr><td>MTB</td><td>7,5</td><td>Gemischt</td></tr>
+      <tr><td>Laufen</td><td>9,5</td><td>Ausdauer</td></tr>
+      <tr><td>Schwimmen</td><td>7,0</td><td>Ausdauer</td></tr>
+      <tr><td>Rudern</td><td>7,5</td><td>Ausdauer</td></tr>
+      <tr><td>Krafttraining</td><td>5,0</td><td>Kraft</td></tr>
+      <tr><td>Klettern</td><td>6,0</td><td>Kraft</td></tr>
+      <tr><td>CrossFit</td><td>8,5</td><td>Gemischt</td></tr>
+      <tr><td>HIIT</td><td>9,0</td><td>Intervall</td></tr>
+      <tr><td>Fußball</td><td>8,0</td><td>Intervall</td></tr>
+      <tr><td>Basketball</td><td>7,5</td><td>Intervall</td></tr>
+      <tr><td>Handball</td><td>8,5</td><td>Intervall</td></tr>
+      <tr><td>Tennis</td><td>7,0</td><td>Intervall</td></tr>
+      <tr><td>Gehen</td><td>3,8</td><td>Leicht</td></tr>
+      <tr><td>Yoga</td><td>2,5</td><td>Leicht</td></tr>
+    </table>
+
+    <h3>Intensitätsfaktoren</h3>
+    <div class="formula-box">
+      Stufe 1 (sehr leicht): ×0,75 &nbsp;·&nbsp;
+      Stufe 2 (leicht): ×0,90 &nbsp;·&nbsp;
+      Stufe 3 (moderat): ×1,05<br />
+      Stufe 4 (intensiv): ×1,25 &nbsp;·&nbsp;
+      Stufe 5 (sehr hart): ×1,45
+    </div>
+
+    <div class="panel-green">
+      Der berechnete Verbrauch wird bei <strong>4.500 kcal gekappt</strong> — das entspricht einer realistischen Obergrenze selbst für Extremsport wie Ironman oder 6-Stunden-Rennen. Ab 3 Stunden und ab 5 Stunden Training erscheinen spezifische Hinweise.
+    </div>
+  </div>
+
+  <!-- Protein & Kohlenhydrate -->
+  <div class="card">
+    <h2>3. Protein & Kohlenhydrate</h2>
+    <p>Die Makronährstoff-Empfehlungen basieren auf sportwissenschaftlichen Richtlinien und werden auf <strong>Intensität, Sportart und Ziel</strong> angepasst.</p>
+
+    <h3>Protein-Basis (g pro kg Körpergewicht)</h3>
+    <div class="formula-box">
+      Stufe 1: 0,25 g/kg &nbsp;·&nbsp;
+      Stufe 2: 0,28 g/kg &nbsp;·&nbsp;
+      Stufe 3: 0,32 g/kg<br />
+      Stufe 4: 0,36 g/kg &nbsp;·&nbsp;
+      Stufe 5: 0,40 g/kg
+    </div>
+
+    <h3>Kohlenhydrat-Basis (g pro kg Körpergewicht)</h3>
+    <div class="formula-box">
+      Stufe 1: 0,25 g/kg &nbsp;·&nbsp;
+      Stufe 2: 0,45 g/kg &nbsp;·&nbsp;
+      Stufe 3: 0,70 g/kg<br />
+      Stufe 4: 0,95 g/kg &nbsp;·&nbsp;
+      Stufe 5: 1,20 g/kg
+    </div>
+
+    <h3>Sportart-Modifikatoren</h3>
+    <p>Je nach Energiesystem der Sportart werden Protein und Kohlenhydrate angepasst — Kraftsport erhöht Protein, Ausdauersport erhöht Kohlenhydrate. Krafttraining und Klettern erhöhen den Protein-Faktor auf ×1,15–1,20, Intervallsportarten wie Fußball oder Handball erhöhen den Carb-Faktor leicht.</p>
+
+    <h3>Ziel-Modifikatoren</h3>
+    <div class="formula-box">
+      Abnehmen: Kohlenhydrate ×0,75 &nbsp;·&nbsp; Aufbau: Protein ×1,08, Kohlenhydrate ×1,15
+    </div>
+
+    <div class="panel-green">
+      Protein wird <strong>nie unter 20g</strong> empfohlen — auch bei sehr leichten Einheiten oder niedrigem Körpergewicht. Das ist die wissenschaftlich etablierte Untergrenze für sinnvolle Muskelproteinsynthese.
+    </div>
+  </div>
+
+  <!-- Mahlzeitenschätzung -->
+  <div class="card">
+    <h2>4. Tagesernährung schätzen</h2>
+    <p>AfterFuel fragt nicht nach exakten Kalorien — sondern nach einer groben Einschätzung jeder Mahlzeit. Dahinter liegen realistische kcal-Bereiche aus Ernährungsdatenbanken:</p>
+
+    <h3>Geschätzte kcal-Bereiche pro Mahlzeit</h3>
+    <table class="sport-table">
+      <tr><th>Mahlzeit</th><th>Klein</th><th>Normal</th><th>Groß</th></tr>
+      <tr><td>Frühstück</td><td>250–400</td><td>400–700</td><td>700–1.000</td></tr>
+      <tr><td>Mittagessen</td><td>350–550</td><td>600–900</td><td>900–1.300</td></tr>
+      <tr><td>Abendessen</td><td>350–550</td><td>600–900</td><td>900–1.300</td></tr>
+      <tr><td>Snacks</td><td>100–250</td><td>250–500</td><td>500–900</td></tr>
+    </table>
+
+    <div class="panel-amber">
+      Diese Bereiche sind bewusst breit — sie spiegeln die natürliche Varianz wider. AfterFuel zeigt deshalb immer Bereiche statt exakter Zahlen. Ein Tool das "1.247 kcal" anzeigt, rät genauso — versteckt aber die Ungenauigkeit.
+    </div>
+  </div>
+
+  <!-- Warum Bereiche -->
+  <div class="card">
+    <h2>5. Warum Bereiche statt exakte Zahlen?</h2>
+    <p>Kein Algorithmus kennt deinen genauen Stoffwechsel. Selbst Labormessungen haben eine Fehlertoleranz von 5–10%. AfterFuel arbeitet deshalb bewusst mit <strong>Bereichen</strong> — das ist wissenschaftlich ehrlicher als Pseudopräzision.</p>
+
+    <p>MET-Werte sind Durchschnittswerte. Dein tatsächlicher Verbrauch hängt von Trainingszustand, Temperatur, Schlaf, Genetik und vielem mehr ab. Die Werte von AfterFuel sind <strong>Orientierung, keine Messung</strong>.</p>
+
+    <div class="panel-blue">
+      <strong>Validierung in der Praxis:</strong> Im persönlichen Test des Entwicklers lagen alle vier Trainingseinheiten (Zone 2 Radfahren, Krafttraining, VO2max) innerhalb der berechneten AfterFuel-Bereiche — verglichen mit einem Garmin-Tracker. Das ist kein wissenschaftlicher Beweis, aber ein gutes Zeichen.
+    </div>
+  </div>
+
+  <!-- Quellen -->
+  <div class="card">
+    <h2>6. Quellen & Grundlagen</h2>
+    <p>AfterFuel basiert auf folgenden wissenschaftlich anerkannten Grundlagen:</p>
+    <p><strong>Mifflin MD, St Jeor ST et al.</strong> — "A new predictive equation for resting energy expenditure in healthy individuals." American Journal of Clinical Nutrition, 1990.</p>
+    <p><strong>Ainsworth BE et al.</strong> — "Compendium of Physical Activities" — die Grundlage aller MET-Werte. Medicine & Science in Sports & Exercise, 2011.</p>
+    <p><strong>Jäger R et al.</strong> — "International Society of Sports Nutrition Position Stand: protein and exercise." Journal of the International Society of Sports Nutrition, 2017.</p>
+    <p><strong>Burke LM et al.</strong> — "Carbohydrates for training and competition." Journal of Sports Sciences, 2011.</p>
+
+    <div class="panel-amber">
+      AfterFuel ersetzt keine medizinische oder ernährungswissenschaftliche Beratung. Die Berechnungen sind Orientierungswerte auf Basis anerkannter Formeln — nicht individualisierte medizinische Empfehlungen.
+    </div>
+  </div>
+
+  <footer>
+    <a href="./">← Zurück zu AfterFuel</a> ·
+    <a href="blog/">Blog</a> ·
+    <a href="impressum.html">Impressum</a> ·
+    <a href="datenschutz.html">Datenschutz</a>
+  </footer>
+
+</div>
+</body>
+</html>

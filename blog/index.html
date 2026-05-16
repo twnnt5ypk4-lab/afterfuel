@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog – AfterFuel</title>
+  <meta name="description" content="Training, Ernährung und ehrliche Berichte aus dem Paincave. 47 Jahre, drei Ops, zwei Kinder — und trotzdem FTP aufbauen." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://afterfuel.de/blog/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://afterfuel.de/blog/" />
+  <meta property="og:title" content="Blog – AfterFuel" />
+  <meta property="og:description" content="Training, Ernährung und ehrliche Berichte aus dem Paincave." />
+  <meta property="og:image" content="https://afterfuel.de/og-image.png" />
+  <meta property="og:locale" content="de_DE" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23c84b2f'/><text x='16' y='22' font-family='serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'>AF</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f4f2ee; --surface: #ffffff; --surface2: #f9f8f6;
+      --border: #e4e1db; --border2: #ccc9c1;
+      --text: #1c1a17; --muted: #7a7570; --hint: #b0ada6;
+      --green: #3d7a52; --green-bg: #edf5f0; --green-border: #b8d9c4;
+      --amber: #a06020; --amber-bg: #fdf4e7;
+      --accent: #c84b2f; --accent-light: #fdf0ed;
+      --radius-md: 16px; --radius-lg: 22px;
+    }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    .page { max-width: 680px; margin: 0 auto; padding: 40px clamp(16px, 4vw, 24px) 100px; }
+
+    /* ── Animations ── */
+    @keyframes fadeUpIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .site-header { animation: fadeUpIn .4s ease both; }
+    .blog-hero   { animation: fadeUpIn .4s .08s ease both; }
+    .articles    { animation: fadeUpIn .4s .16s ease both; }
+    footer       { animation: fadeUpIn .4s .22s ease both; }
+
+    /* ── Header ── */
+    .site-header {
+      margin-bottom: 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; letter-spacing: -0.03em;
+      text-decoration: none; color: var(--text);
+    }
+    .logo span { color: var(--accent); }
+    .back-link {
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      display: flex; align-items: center; gap: 6px; transition: color .15s;
+    }
+    .back-link:hover { color: var(--text); }
+    .back-link svg { flex-shrink: 0; }
+
+    /* ── Hero ── */
+    .blog-hero {
+      position: relative;
+      background: var(--accent-light);
+      border: 1px solid #f0c4ba;
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 6vw, 44px);
+      margin-bottom: 36px;
+      overflow: hidden;
+    }
+    /* Subtle grain texture */
+    .blog-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; border-radius: inherit; z-index: 0;
+    }
+    /* Decorative radial glow */
+    .blog-hero-deco {
+      position: absolute; right: -40px; top: -40px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,75,47,.1) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .blog-hero-inner { position: relative; z-index: 1; }
+    .blog-kicker {
+      font-size: 11px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+    }
+    .blog-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 14px;
+    }
+    .blog-sub {
+      font-size: 15px; color: var(--muted); line-height: 1.65; max-width: 480px;
+      margin-bottom: 22px;
+    }
+    .blog-hero-meta {
+      font-size: 12px; color: var(--hint); letter-spacing: .01em;
+      display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+    }
+    .blog-hero-meta-item {
+      display: flex; align-items: center; gap: 5px;
+    }
+    .blog-hero-meta-item svg { flex-shrink: 0; }
+
+    /* ── Section Label ── */
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--hint); margin: 32px 0 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ── Article Cards ── */
+    .articles { display: flex; flex-direction: column; gap: 12px; }
+
+    .article-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(18px, 4vw, 26px);
+      text-decoration: none; color: inherit; display: block;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s;
+      position: relative; overflow: hidden;
+    }
+    .article-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border2);
+      box-shadow: 0 6px 24px rgba(28,26,23,.07);
+    }
+
+    /* Featured first card */
+    .article-card.featured {
+      background: var(--surface);
+      border-color: var(--border2);
+      box-shadow: 0 2px 8px rgba(28,26,23,.05);
+    }
+    .article-card.featured .article-title {
+      font-size: 1.45rem;
+    }
+
+    .article-meta {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 10px; flex-wrap: wrap;
+    }
+    .article-date { font-size: 12px; color: var(--hint); }
+
+    /* Tag with custom SVG icon */
+    .article-tag {
+      font-size: 11px; font-weight: 600; padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--accent-light); color: var(--accent);
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .article-tag.green { background: var(--green-bg); color: var(--green); }
+    .article-tag.amber { background: var(--amber-bg); color: var(--amber); }
+    .article-tag svg { flex-shrink: 0; }
+
+    .article-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem; line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.01em;
+    }
+    .article-excerpt {
+      font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 14px;
+    }
+    .article-link {
+      font-size: 13px; font-weight: 600; color: var(--accent);
+      display: inline-flex; align-items: center; gap: 5px;
+      transition: gap .15s;
+    }
+    .article-card:hover .article-link { gap: 8px; }
+    .article-link svg { flex-shrink: 0; }
+
+    /* Coming soon */
+    .article-card.coming-soon {
+      opacity: .55; cursor: default; pointer-events: none; background: var(--surface2);
+    }
+    .coming-tag {
+      font-size: 11px; font-weight: 600; padding: 3px 10px;
+      border-radius: 100px; background: var(--border); color: var(--hint);
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center; font-size: 12px; color: var(--hint);
+      margin-top: 56px; line-height: 1.7;
+      padding-top: 24px; border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--hint); text-decoration: none; margin: 0 8px; }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="site-header">
+    <a href="/" class="logo">After<span>Fuel</span></a>
+    <a href="/" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 2L4 7l5 5"/>
+      </svg>
+      Zurück zur App
+    </a>
+  </header>
+
+  <div class="blog-hero">
+    <div class="blog-hero-deco"></div>
+    <div class="blog-hero-inner">
+      <div class="blog-kicker">Aus dem Paincave</div>
+      <h1 class="blog-title">Training, Ernährung,<br>ehrliche Berichte.</h1>
+      <p class="blog-sub">Kein Hochglanz-Fitness-Content. Sondern wie es wirklich ist — 47 Jahre, Familie, Rückschläge und trotzdem versuchen FTP aufzubauen.</p>
+      <div class="blog-hero-meta">
+        <span class="blog-hero-meta-item">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#b0ada6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="2" width="12" height="11" rx="2"/><path d="M1 6h12M5 1v2M9 1v2"/>
+          </svg>
+          10 Artikel
+        </span>
+        <span class="blog-hero-meta-item">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#b0ada6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="7" r="6"/><path d="M7 4v3l2 2"/>
+          </svg>
+          Regelmäßig aktualisiert
+        </span>
+        <span class="blog-hero-meta-item">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#b0ada6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.3l-3.7 2 .7-4.1-3-2.9 4.2-.7z"/>
+          </svg>
+          Kein Hochglanz
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Aktuell</div>
+
+  <div class="articles">
+
+    <a href="paincave-ftp-aufbau.html" class="article-card featured">
+      <div class="article-meta">
+        <span class="article-date">13. Mai 2026</span>
+        <span class="article-tag">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2H3L2 7h8z"/><path d="M4 7v3M8 7v3M3 10h6"/></svg>
+          Paincave
+        </span>
+        <span class="article-tag green">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 8 5 5 7 7 10 3"/></svg>
+          FTP
+        </span>
+      </div>
+      <div class="article-title">Von 260W auf 203W — und zurück.</div>
+      <div class="article-excerpt">Vier Monate Stress, schlechter Schlaf, hohes Cortisol. Wie schnell Fitness abbaut — und wie ich jetzt mit TrainerRoad KI-Erkennung den Weg zurück angehe. Neuer FTP: 216W, Prognose in 28 Tagen: 233W.</div>
+      <div class="article-link">
+        Artikel lesen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M8 3l4 3.5-4 3.5"/></svg>
+      </div>
+    </a>
+
+    <a href="was-ich-nach-der-rolle-esse.html" class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2h6l1 4H2z"/><path d="M2 6c0 2.2 1.8 4 4 4s4-1.8 4-4"/></svg>
+          Ernährung
+        </span>
+        <span class="article-tag green">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="5"/><path d="M6 3v3l2 1"/></svg>
+          Carbs
+        </span>
+      </div>
+      <div class="article-title">Was ich nach 90 Minuten auf der Rolle esse — und warum</div>
+      <div class="article-excerpt">Zone 2, Sweetspot, VO₂max — drei Einheiten, drei komplett andere Carb-Anforderungen danach. Schnelle oder langsame Kohlenhydrate? Wann welche — konkret erklärt.</div>
+      <div class="article-link">
+        Artikel lesen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M8 3l4 3.5-4 3.5"/></svg>
+      </div>
+    </a>
+
+    <a href="trainieren-mit-47.html" class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="3.5" r="2"/><path d="M2 10c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg>
+          Masters Athlete
+        </span>
+        <span class="article-tag amber">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v3M6 8v3M1 6h3M8 6h3"/></svg>
+          Recovery
+        </span>
+      </div>
+      <div class="article-title">Trainieren mit 47: Was wirklich anders ist als mit 30</div>
+      <div class="article-excerpt">Recovery dauert länger. Schlaf wird wichtiger. Cortisol frisst Fitness auf. Was ich mit 47, drei Ops und einem Stress-Jahr gelernt habe — und was sich trotzdem nicht geändert hat.</div>
+      <div class="article-link">
+        Artikel lesen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M8 3l4 3.5-4 3.5"/></svg>
+      </div>
+    </a>
+
+    <a href="alkohol-nikotin-training.html" class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1l1.5 3 3.5.5-2.5 2.5.5 3.5L6 9l-3 1.5.5-3.5L1 4.5 4.5 4z"/></svg>
+          Lifestyle
+        </span>
+        <span class="article-tag green">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v3M6 8v3M1 6h3M8 6h3"/></svg>
+          Recovery
+        </span>
+      </div>
+      <div class="article-title">Ein Bier, ein verlorener Trainingstag.</div>
+      <div class="article-excerpt">Ich trinke seit 1,5 Jahren keinen Alkohol mehr — nicht aus moralischen Gründen, sondern weil ein Bier mich einen Trainingstag kostet. Was Alkohol mit Schlaf, Muskelaufbau und Recovery macht.</div>
+      <div class="article-link">
+        Artikel lesen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M8 3l4 3.5-4 3.5"/></svg>
+      </div>
+    </a>
+
+    <a href="warum-zone-2-sinn-ergab.html" class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 8 4 5 6 7 9 3 11 5"/></svg>
+          Training
+        </span>
+        <span class="article-tag green">Zone 2</span>
+      </div>
+      <div class="article-title">Warum Zone 2 plötzlich Sinn ergab.</div>
+      <div class="article-excerpt">Erst langweilig, dann unverzichtbar. Wie Zone-2-Training mein Verhältnis zur Rolle verändert hat — weniger kaputt, konstanter trainieren, Alltag besser verkraften.</div>
+      <div class="article-link">
+        Artikel lesen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M8 3l4 3.5-4 3.5"/></svg>
+      </div>
+    </a>
+
+    <a href="vo2max-einheit-fast-gebrochen.html" class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2H3L2 7h8z"/><path d="M4 7v3M8 7v3M3 10h6"/></svg>
+          Paincave
+        </span>
+        <span class="article-tag">VO₂max</span>
+      </div>
+      <div class="article-title">Die VO₂max-Einheit, die mich fast gebrochen hat.</div>
+      <div class="article-excerpt">Dritter Intervall. Puls bei 178. Arbeitsstress im Kopf, nichts gegessen seit Mittag. Der Unterschied zwischen hart und zu hart — und was ich falsch gemacht habe.</div>
+      <div class="article-link">
+        Artikel lesen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M8 3l4 3.5-4 3.5"/></svg>
+      </div>
+    </a>
+
+    <a href="indoor-training-keller.html" class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2H3L2 7h8z"/><path d="M4 7v3M8 7v3M3 10h6"/></svg>
+          Paincave
+        </span>
+        <span class="article-tag green">Mindset</span>
+      </div>
+      <div class="article-title">Indoor-Training im Keller fühlt sich manchmal absurd an.</div>
+      <div class="article-excerpt">21:30 Uhr. Kinder schlafen. Man sitzt allein im Keller auf einem Rad das nirgendwohin fährt. Draußen läuft das normale Leben. Und trotzdem tritt man.</div>
+      <div class="article-link">
+        Artikel lesen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M8 3l4 3.5-4 3.5"/></svg>
+      </div>
+    </a>
+
+    <a href="aufgehoert-perfekt-trainieren.html" class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">Mindset</span>
+        <span class="article-tag green">Alltag</span>
+      </div>
+      <div class="article-title">Warum ich aufgehört habe, perfekt trainieren zu wollen.</div>
+      <div class="article-excerpt">Keine perfekte Woche. Kinder, Arbeit, Müdigkeit, drei Ops. Und trotzdem Fortschritte. Warum Kontinuität wichtiger ist als Perfektion.</div>
+      <div class="article-link">
+        Artikel lesen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M8 3l4 3.5-4 3.5"/></svg>
+      </div>
+    </a>
+
+    <a href="erste-echte-fortschritte.html" class="article-card">
+      <div class="article-meta">
+        <span class="article-tag green">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 9 4 6 6 8 9 4 11 5"/></svg>
+          Fortschritt
+        </span>
+        <span class="article-tag">Motivation</span>
+      </div>
+      <div class="article-title">Die ersten echten Fortschritte.</div>
+      <div class="article-excerpt">Puls sinkt. Beine werden leichter. Alltag leichter. Die echten frühen Fortschritte kommen leise — und man merkt sie fast zu spät. Woran man sie erkennt.</div>
+      <div class="article-link">
+        Artikel lesen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M8 3l4 3.5-4 3.5"/></svg>
+      </div>
+    </a>
+
+    <a href="arbeit-frisst-leistung.html" class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="8" height="7" rx="1"/><path d="M4 3V2h4v1"/></svg>
+          Stress
+        </span>
+        <span class="article-tag amber">Cortisol</span>
+        <span class="article-tag green">Erfahrung</span>
+      </div>
+      <div class="article-title">Arbeit frisst Leistung — und man merkt es oft zu spät.</div>
+      <div class="article-excerpt">Morgens schon erschöpft. Meetings die Energie ziehen. Nach Feierabend innerlich noch im Büro — und trotzdem versucht man zu trainieren. Ich dachte lange, ich wäre einfach unfit geworden.</div>
+      <div class="article-link">
+        Artikel lesen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5h9M8 3l4 3.5-4 3.5"/></svg>
+      </div>
+    </a>
+
+  </div>
+
+  <footer>
+    AfterFuel · <a href="/">App</a> · <a href="/methodik.html">Methodik</a> · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a>
+  </footer>
+
+</div>
+</body>
+</html>
